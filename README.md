@@ -1,1 +1,2 @@
-"# simple-compound-interest-calculator" 
+"simple-compound-interest-calculator" 
+A simple and compound interest calculator developed using AngularJS 1.
