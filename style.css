@@ -1,0 +1,11 @@
+.container {
+    padding: 6%;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.float-right {
+    float: right;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test Umai</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="myController">
+<div class="container">
+    <div class="row">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="select" class="col-xs-5 col-sm-3 col-md-4 control-label text-primary">Select one option:</label>
+                <div class="no-padding col-xs-6 col-sm-6 col-md-4">
+                    <select ng-model="interestType" ng-change="reset()" class="form-control" id="select">
+                        <option value="SI">Simple Interest</option>
+                        <option value="CI">Compound Interest</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <br>
+        <form name="interestForm" class="form-horizontal" ng-show="interestType =='SI' || interestType =='CI'">
+            <div class="form-group">
+                <label for="principalAmount" class="col-xs-5 col-sm-3 col-md-4 control-label">Principal amount</label>
+                <div class="input-group col-xs-6 col-sm-6 col-md-4">
+                    <div class="input-group-addon">$</div>
+                    <input type="number" class="form-control" ng-model="principalAmount" id="principalAmount" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="interestRate" class="col-xs-5 col-sm-3 col-md-4 control-label">Interest rate</label>
+                <div class="input-group col-xs-6 col-sm-6 col-md-4">
+                    <input type="number" class="form-control" ng-model="interestRate" id="interestRate" required>
+                    <div class="input-group-addon">%</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="time" class="col-xs-5 col-sm-3 col-md-4 control-label">Number of years</label>
+                <div class="col-xs-6 col-sm-6 col-md-4 no-padding">
+                    <input type="number" class="form-control" ng-model="time" id="time" required>
+                </div>
+            </div>
+            <div class="form-group" ng-show="interestType =='CI'">
+                <label for="compoundInterval" class="col-xs-5 col-sm-3 col-md-4 control-label">Compound frequency</label>
+                <div class="col-xs-6 col-sm-6 col-md-4  no-padding">
+                    <input type="number" class="form-control" ng-model="compoundInterval" id="compoundInterval" ng-required="checkInterest()">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-offset-5 col-xs-3 col-sm-offset-0 col-sm-6">
+                    <button type="button" class="btn btn-primary float-right" ng-click="calculateInterest()" ng-disabled="interestForm.$invalid">Calculate</button>
+                </div>
+                <div class="col-xs-3 col-sm-6">
+                    <button type="button" class="btn btn-primary" ng-click="reset()">Reset</button>
+                </div>
+            </div>
+        </form>
+        <div class="row" ng-if="interest">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                <div class="alert alert-info">
+                   {{interest}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+<script src="index.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
